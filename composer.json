@@ -1,0 +1,36 @@
+{
+  "name": "omnipay/spryngpayments",
+  "type": "library",
+  "description": "Spryng Payments driver for the Omnipay library",
+  "keywords": [
+    "gateway",
+    "spryngpayments",
+    "payment",
+    "omnipay"
+  ],
+  "homepage": "https://github.com/thephpleague/omnipay-spryngpayments",
+  "licence": "MIT",
+  "authors": [
+    {
+      "name": "Roemer Bakker",
+      "email": "contact@roemerbakker.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": { "Omnipay\\SpryngPayments\\": "src/" }
+  },
+  "autoload-dev": {
+    "psr-4": { "Omnipay\\SpryngPayments\\": "tests/" }
+  },
+  "require": {
+    "omnipay/common": "3.0.2"
+  },
+  "require-dev": {
+    "omnipay/tests": "^3.1",
+    "squizlabs/php_codesniffer": "^3",
+    "phpro/grumphp": "^0.14",
+    "phpmd/phpmd": "^2",
+    "overtrue/phplint": "^1",
+    "jakub-onderka/php-parallel-lint": "^1"
+  }
+}
