@@ -2,7 +2,9 @@
 
 namespace Omnipay\SpryngPayments\Message\Request;
 
+use Omnipay\Common\Exception\InvalidRequestException;
 use Omnipay\Common\Message\AbstractRequest;
+use Omnipay\SpryngPayments\Methods\iDEAL;
 
 abstract class AbstractSpryngPaymentsRequest extends AbstractRequest
 {
@@ -13,9 +15,46 @@ abstract class AbstractSpryngPaymentsRequest extends AbstractRequest
 
     protected $baseUrl = 'https://api.spryngpayments.com/';
 
-    public function getApiKey()
+    public function getAccount()
     {
-        return $this->getParameter('apikey');
+        return $this->getParameter('account');
+    }
+
+    public function getAmount()
+    {
+        return $this->getParameter('amount');
+    }
+
+    public function getCustomerIp()
+    {
+        return $this->getParameter('customer_ip');
+    }
+
+    public function getDynamicDescriptor()
+    {
+        return $this->getParameter('dynamic_descriptor');
+    }
+
+    public function getMerchantReference()
+    {
+        return $this->getParameter('merchant_reference');
+    }
+
+    public function getUserAgent()
+    {
+        return $this->getParameter('user_agent');
+    }
+
+    public function getBaseTransactionData()
+    {
+        return [
+            'account'               => $this->getAccount(),
+            'amount'                => $this->getAmount(),
+            'customer_ip'           => $this->getCustomerIp(),
+            'dynamic_descriptor'    => $this->getDynamicDescriptor(),
+            'merchant_reference'    => $this->getMerchantReference(),
+            'user_agent'            => $this->getUserAgent()
+        ];
     }
 
     protected function sendRequest($method, $endpoint, array $data = null)
@@ -30,5 +69,21 @@ abstract class AbstractSpryngPaymentsRequest extends AbstractRequest
         );
 
         return json_decode($response->getBody(), true);
+    }
+
+    /**
+     * @return \Omnipay\SpryngPayments\PaymentMethod
+     * @throws InvalidRequestException
+     */
+    protected function getMethodClassForPaymentProduct()
+    {
+        switch ($this->getParameter('payment_product'))
+        {
+            case 'ideal':
+                return new iDEAL();
+                break;
+            default:
+                throw new InvalidRequestException($this->getParameter('payment_product'.' is not supported.'));
+        }
     }
 }
