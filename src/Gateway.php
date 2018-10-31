@@ -3,6 +3,7 @@
 namespace Omnipay\SpryngPayments;
 
 use Omnipay\Common\AbstractGateway;
+use Omnipay\SpryngPayments\Message\Request\PurchaseRequest;
 
 class Gateway extends AbstractGateway
 {
@@ -14,7 +15,7 @@ class Gateway extends AbstractGateway
     public function getDefaultParameters()
     {
         return array(
-            'apikey' => ''
+            'apiKey' => ''
         );
     }
 
@@ -28,9 +29,9 @@ class Gateway extends AbstractGateway
         return $this->setParameter('apikey', $apiKey);
     }
 
-    public function purchase(array $options = array())
+    public function purchase(array $parameters = array())
     {
-        // TODO: Implement purchase() method.
+        return $this->createRequest(PurchaseRequest::class, $parameters);
     }
 
     public function completePurchase(array $options = array())

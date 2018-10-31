@@ -15,9 +15,24 @@ abstract class AbstractSpryngPaymentsRequest extends AbstractRequest
 
     protected $baseUrl = 'https://api.spryngpayments.com/';
 
+    public function getApiKey()
+    {
+        return $this->getParameter('apiKey');
+    }
+
+    public function setApiKey($apiKey)
+    {
+        $this->setParameter('apiKey', $apiKey);
+    }
+
     public function getAccount()
     {
         return $this->getParameter('account');
+    }
+
+    public function setAccount($account)
+    {
+        $this->setParameter('account', $account);
     }
 
     public function getAmount()
@@ -25,24 +40,49 @@ abstract class AbstractSpryngPaymentsRequest extends AbstractRequest
         return $this->getParameter('amount');
     }
 
+    public function setAmount($amount)
+    {
+        $this->setParameter('amount', $amount);
+    }
+
     public function getCustomerIp()
     {
-        return $this->getParameter('customer_ip');
+        return $this->getParameter('customerIp');
+    }
+
+    public function setCustomerIp($customerIp)
+    {
+        return $this->setParameter('customerIp', $customerIp);
     }
 
     public function getDynamicDescriptor()
     {
-        return $this->getParameter('dynamic_descriptor');
+        return $this->getParameter('dynamicDescriptor');
+    }
+
+    public function setDynamicDescriptor($dd)
+    {
+        $this->setParameter('dynamicDescriptor', $dd);
     }
 
     public function getMerchantReference()
     {
-        return $this->getParameter('merchant_reference');
+        return $this->getParameter('merchantReference');
+    }
+
+    public function setMerchantReference($mr)
+    {
+        $this->setParameter('merchantReference', $mr);
     }
 
     public function getUserAgent()
     {
-        return $this->getParameter('user_agent');
+        return $this->getParameter('userAgent');
+    }
+
+    public function setUserAgent($ua)
+    {
+        $this->setParameter('userAgent', $ua);
     }
 
     public function getBaseTransactionData()
@@ -77,7 +117,7 @@ abstract class AbstractSpryngPaymentsRequest extends AbstractRequest
      */
     protected function getMethodClassForPaymentProduct()
     {
-        switch ($this->getParameter('payment_product'))
+        switch ($this->getPaymentMethod())
         {
             case 'ideal':
                 return new iDEAL();

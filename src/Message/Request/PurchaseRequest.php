@@ -5,8 +5,6 @@ namespace Omnipay\SpryngPayments\Message\Request;
 use Omnipay\Common\Exception\InvalidRequestException;
 use Omnipay\Common\Message\ResponseInterface;
 use Omnipay\SpryngPayments\Message\Response\PurchaseResponse;
-use Omnipay\SpryngPayments\Methods\iDEAL;
-use Omnipay\SpryngPayments\PaymentMethod;
 
 class PurchaseRequest extends AbstractSpryngPaymentsRequest
 {
@@ -22,7 +20,7 @@ class PurchaseRequest extends AbstractSpryngPaymentsRequest
     {
         // Initially validate payment_product to make sure it is set
         $this->validate(
-            'payment_product'
+            'paymentMethod'
         );
 
         // Get the method class for the payment product and call $this->validate for the required parameters

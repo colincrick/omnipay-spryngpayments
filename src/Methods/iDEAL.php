@@ -17,11 +17,11 @@ class iDEAL implements PaymentMethod
         return [
             'account',
             'amount',
-            'customer_ip',
+            'customerIp',
             'issuer',
-            'dynamic_descriptor',
-            'merchant_reference',
-            'user_agent'
+            'dynamicDescriptor',
+            'merchantReference',
+            'userAgent'
         ];
     }
 
