@@ -45,6 +45,16 @@ abstract class AbstractSpryngPaymentsRequest extends AbstractRequest
         $this->setParameter('amount', $amount);
     }
 
+    public function getCapture()
+    {
+        return $this->getParameter('capture');
+    }
+
+    public function setCapture($capture)
+    {
+        return $this->setParameter('capture', $capture);
+    }
+
     public function getCustomerIp()
     {
         return $this->getParameter('customerIp');
@@ -90,6 +100,7 @@ abstract class AbstractSpryngPaymentsRequest extends AbstractRequest
         return [
             'account'               => $this->getAccount(),
             'amount'                => $this->getAmount(),
+            'capture'               => $this->getCapture(),
             'customer_ip'           => $this->getCustomerIp(),
             'dynamic_descriptor'    => $this->getDynamicDescriptor(),
             'merchant_reference'    => $this->getMerchantReference(),
@@ -105,7 +116,7 @@ abstract class AbstractSpryngPaymentsRequest extends AbstractRequest
             [
                 'X-APIKEY' => $this->getApiKey()
             ],
-            json_encode($data)
+            ($data === null) ? null : json_encode($data)
         );
 
         return json_decode($response->getBody(), true);

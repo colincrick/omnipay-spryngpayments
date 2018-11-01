@@ -21,6 +21,24 @@ class AbstractSpryngPaymentsResponse extends AbstractResponse
         return true;
     }
 
+    public function getTransactionReference()
+    {
+        if (isset($this->data['merchant_reference'])) {
+            return $this->data['merchant_reference'];
+        }
+
+        return null;
+    }
+
+    public function getTransactionId()
+    {
+        if (isset($this->data['_id'])) {
+            return $this->data['_id'];
+        }
+
+        return null;
+    }
+
     public function isOpen()
     {
         if (in_array($this->data['status'], ['INITIATED', 'PENDING'])) {

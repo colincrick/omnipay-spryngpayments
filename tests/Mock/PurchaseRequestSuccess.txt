@@ -4,6 +4,7 @@ Content-Type: Content-Type →application/json; charset=utf-8
 {
     "processor": "ems",
     "account": "abc123",
+    "amount": 1000,
     "customer_ip": "127.0.0.1",
     "dynamic_descriptor": "TEST123",
     "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.116 Safari/537.36",

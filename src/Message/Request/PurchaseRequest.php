@@ -30,6 +30,7 @@ class PurchaseRequest extends AbstractSpryngPaymentsRequest
 
         // Set required parameters
         $data = $this->getBaseTransactionData();
+        $data['payment_product'] = $this->getPaymentMethod();
         $data['details']['issuer'] = $this->getIssuer();
         $data['details']['redirect_url'] = $this->getReturnUrl();
 
@@ -55,7 +56,7 @@ class PurchaseRequest extends AbstractSpryngPaymentsRequest
         $method = $this->getMethodClassForPaymentProduct();
 
         // Get the response from the initate url and return a PurchaseResponse
-        $response = $this->sendRequest(self::POST, $method::getInitiateUrl());
+        $response = $this->sendRequest(self::POST, $method::getInitiateUrl(), $data);
 
         return $this->response = new PurchaseResponse($this, $response);
     }

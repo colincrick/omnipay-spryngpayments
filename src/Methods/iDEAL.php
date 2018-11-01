@@ -17,6 +17,7 @@ class iDEAL implements PaymentMethod
         return [
             'account',
             'amount',
+            'capture',
             'customerIp',
             'issuer',
             'dynamicDescriptor',

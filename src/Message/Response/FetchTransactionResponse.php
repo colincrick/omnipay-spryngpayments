@@ -1,9 +1,8 @@
 <?php
 
-namespace Omnipay\Common\Message\AbstractRequest;
+namespace Omnipay\SpryngPayments\Message\Response;
 
 use Omnipay\Common\Message\RedirectResponseInterface;
-use Omnipay\SpryngPayments\Message\Response\AbstractSpryngPaymentsResponse;
 
 /**
  * Class FetchTransactionResponse
