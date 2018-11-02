@@ -4,7 +4,7 @@ namespace Omnipay\SpryngPayments\Methods;
 
 use Omnipay\SpryngPayments\PaymentMethod;
 
-class iDEAL implements PaymentMethod
+class SEPA implements PaymentMethod
 {
 
     /**
@@ -18,8 +18,8 @@ class iDEAL implements PaymentMethod
             'account',
             'amount',
             'capture',
+            'customer',
             'customerIp',
-            'issuer',
             'dynamicDescriptor',
             'merchantReference',
             'returnUrl',
@@ -34,7 +34,7 @@ class iDEAL implements PaymentMethod
      */
     public static function getInitiateUrl()
     {
-        return '/transaction/ideal/initiate';
+        return '/transaction/sepa/initiate';
     }
 
     /**
@@ -47,7 +47,7 @@ class iDEAL implements PaymentMethod
     public function setPurchaseData($data, $parameters)
     {
         $data['details']['redirect_url'] = $parameters['returnUrl'];
-        $data['details']['issuer'] = $parameters['issuer'];
+        $data['customer'] = $parameters['customer'];
 
         return $data;
     }

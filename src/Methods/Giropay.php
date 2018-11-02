@@ -4,7 +4,7 @@ namespace Omnipay\SpryngPayments\Methods;
 
 use Omnipay\SpryngPayments\PaymentMethod;
 
-class iDEAL implements PaymentMethod
+class Giropay implements PaymentMethod
 {
 
     /**
@@ -17,9 +17,9 @@ class iDEAL implements PaymentMethod
         return [
             'account',
             'amount',
+            'bic',
             'capture',
             'customerIp',
-            'issuer',
             'dynamicDescriptor',
             'merchantReference',
             'returnUrl',
@@ -34,7 +34,7 @@ class iDEAL implements PaymentMethod
      */
     public static function getInitiateUrl()
     {
-        return '/transaction/ideal/initiate';
+        return '/transaction/giropay/initiate';
     }
 
     /**
@@ -47,7 +47,7 @@ class iDEAL implements PaymentMethod
     public function setPurchaseData($data, $parameters)
     {
         $data['details']['redirect_url'] = $parameters['returnUrl'];
-        $data['details']['issuer'] = $parameters['issuer'];
+        $data['details']['bic'] = $parameters['bic'];
 
         return $data;
     }

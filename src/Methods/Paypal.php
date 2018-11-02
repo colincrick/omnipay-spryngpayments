@@ -4,7 +4,7 @@ namespace Omnipay\SpryngPayments\Methods;
 
 use Omnipay\SpryngPayments\PaymentMethod;
 
-class iDEAL implements PaymentMethod
+class Paypal implements PaymentMethod
 {
 
     /**
@@ -19,7 +19,6 @@ class iDEAL implements PaymentMethod
             'amount',
             'capture',
             'customerIp',
-            'issuer',
             'dynamicDescriptor',
             'merchantReference',
             'returnUrl',
@@ -34,7 +33,7 @@ class iDEAL implements PaymentMethod
      */
     public static function getInitiateUrl()
     {
-        return '/transaction/ideal/initiate';
+        return '/transaction/paypal/initiate';
     }
 
     /**
@@ -46,8 +45,8 @@ class iDEAL implements PaymentMethod
      */
     public function setPurchaseData($data, $parameters)
     {
-        $data['details']['redirect_url'] = $parameters['returnUrl'];
-        $data['details']['issuer'] = $parameters['issuer'];
+        $data['details']['capture_now'] = $data['capture'];
+        unset($data['capture']);
 
         return $data;
     }

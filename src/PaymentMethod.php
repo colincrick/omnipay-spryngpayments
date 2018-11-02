@@ -17,4 +17,13 @@ interface PaymentMethod
      * @return string
      */
     public static function getInitiateUrl();
+
+    /**
+     * Takes the default data for a purchase request and makes method-specific changes
+     *
+     * @param $data
+     * @param $parameters
+     * @return mixed
+     */
+    public function setPurchaseData($data, $parameters);
 }

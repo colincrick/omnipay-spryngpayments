@@ -30,9 +30,8 @@ class PurchaseRequest extends AbstractSpryngPaymentsRequest
 
         // Set required parameters
         $data = $this->getBaseTransactionData();
+        $data = $method->setPurchaseData($data, $this->getParameters());
         $data['payment_product'] = $this->getPaymentMethod();
-        $data['details']['issuer'] = $this->getIssuer();
-        $data['details']['redirect_url'] = $this->getReturnUrl();
 
         if (!is_null($customer = $this->getParameter('customer'))) {
             $data['customer'] = $customer;

@@ -4,7 +4,7 @@ namespace Omnipay\SpryngPayments\Methods;
 
 use Omnipay\SpryngPayments\PaymentMethod;
 
-class iDEAL implements PaymentMethod
+class Klarna implements PaymentMethod
 {
 
     /**
@@ -19,9 +19,11 @@ class iDEAL implements PaymentMethod
             'amount',
             'capture',
             'customerIp',
-            'issuer',
+            'customer',
+            'goodsList',
             'dynamicDescriptor',
             'merchantReference',
+            'pclass',
             'returnUrl',
             'userAgent'
         ];
@@ -34,7 +36,7 @@ class iDEAL implements PaymentMethod
      */
     public static function getInitiateUrl()
     {
-        return '/transaction/ideal/initiate';
+        return '/transaction/klarna/initiate';
     }
 
     /**
@@ -46,8 +48,8 @@ class iDEAL implements PaymentMethod
      */
     public function setPurchaseData($data, $parameters)
     {
-        $data['details']['redirect_url'] = $parameters['returnUrl'];
-        $data['details']['issuer'] = $parameters['issuer'];
+        $data['details']['goods_list']  = $parameters['goods_list'];
+        $data['details']['pclass']      = $parameters['pclass'];
 
         return $data;
     }

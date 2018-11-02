@@ -4,7 +4,14 @@ namespace Omnipay\SpryngPayments\Message\Request;
 
 use Omnipay\Common\Exception\InvalidRequestException;
 use Omnipay\Common\Message\AbstractRequest;
+use Omnipay\SpryngPayments\Methods\Bancontact;
+use Omnipay\SpryngPayments\Methods\CreditCard;
+use Omnipay\SpryngPayments\Methods\Giropay;
 use Omnipay\SpryngPayments\Methods\iDEAL;
+use Omnipay\SpryngPayments\Methods\Klarna;
+use Omnipay\SpryngPayments\Methods\Paypal;
+use Omnipay\SpryngPayments\Methods\SEPA;
+use Omnipay\SpryngPayments\Methods\SOFORT;
 
 abstract class AbstractSpryngPaymentsRequest extends AbstractRequest
 {
@@ -75,6 +82,39 @@ abstract class AbstractSpryngPaymentsRequest extends AbstractRequest
         $this->setParameter('dynamicDescriptor', $dd);
     }
 
+    public function getGoodsList()
+    {
+        return $this->getParameter('goodsList');
+    }
+
+    /**
+     * @param array $goodsList
+     */
+    public function setGoodsList($goodsList)
+    {
+        $this->setParameter('goodsList', $goodsList);
+    }
+
+    public function getProjectId()
+    {
+        return $this->getParameter('projectId');
+    }
+
+    public function setProjectId($projectId)
+    {
+        $this->setParameter('projectId', $projectId);
+    }
+
+    public function getBic()
+    {
+        return $this->getParameter('bic');
+    }
+
+    public function setBic($bic)
+    {
+        return $this->setParameter('bic', $bic);
+    }
+
     public function getMerchantReference()
     {
         return $this->getParameter('merchantReference');
@@ -130,8 +170,29 @@ abstract class AbstractSpryngPaymentsRequest extends AbstractRequest
     {
         switch ($this->getPaymentMethod())
         {
+            case 'bancontact':
+                return new Bancontact();
+                break;
+            case 'card':
+                return new CreditCard();
+                break;
+            case 'giropay':
+                return new Giropay();
+                break;
             case 'ideal':
                 return new iDEAL();
+                break;
+            case 'klarna':
+                return new Klarna();
+                break;
+            case 'paypal':
+                return new Paypal();
+                break;
+            case 'sepa':
+                return new SEPA();
+                break;
+            case 'sofort':
+                return new SOFORT();
                 break;
             default:
                 throw new InvalidRequestException($this->getParameter('payment_product'.' is not supported.'));

@@ -4,7 +4,7 @@ namespace Omnipay\SpryngPayments\Methods;
 
 use Omnipay\SpryngPayments\PaymentMethod;
 
-class iDEAL implements PaymentMethod
+class CreditCard implements PaymentMethod
 {
 
     /**
@@ -18,11 +18,10 @@ class iDEAL implements PaymentMethod
             'account',
             'amount',
             'capture',
+            'card',
             'customerIp',
-            'issuer',
             'dynamicDescriptor',
             'merchantReference',
-            'returnUrl',
             'userAgent'
         ];
     }
@@ -34,21 +33,6 @@ class iDEAL implements PaymentMethod
      */
     public static function getInitiateUrl()
     {
-        return '/transaction/ideal/initiate';
-    }
-
-    /**
-     * Takes the default data for a purchase request and makes method-specific changes
-     *
-     * @param $data
-     * @param $parameters
-     * @return mixed
-     */
-    public function setPurchaseData($data, $parameters)
-    {
-        $data['details']['redirect_url'] = $parameters['returnUrl'];
-        $data['details']['issuer'] = $parameters['issuer'];
-
-        return $data;
+        return '/transaction';
     }
 }

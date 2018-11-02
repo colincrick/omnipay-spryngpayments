@@ -3,6 +3,7 @@
 namespace Omnipay\SpryngPayments\Message\Request;
 
 use Omnipay\Common\Message\ResponseInterface;
+use Omnipay\SpryngPayments\Message\Response\FetchTransactionResponse;
 
 class FetchTransactionRequest extends AbstractSpryngPaymentsRequest
 {
@@ -28,7 +29,7 @@ class FetchTransactionRequest extends AbstractSpryngPaymentsRequest
      * Send the request with specified data
      *
      * @param  mixed $data The data to send
-     * @return ResponseInterface
+     * @return FetchTransactionResponse
      */
     public function sendData($data)
     {
