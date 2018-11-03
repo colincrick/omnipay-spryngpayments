@@ -3,9 +3,12 @@
 namespace Omnipay\SpryngPayments\Methods;
 
 use Omnipay\SpryngPayments\PaymentMethod;
+use Omnipay\SpryngPayments\Support\DoesNotSupportRefunds;
 
 class Bancontact implements PaymentMethod
 {
+
+    use DoesNotSupportRefunds;
 
     /**
      * Get the required parameters to make a purchase with this payment method

@@ -3,9 +3,11 @@
 namespace Omnipay\SpryngPayments\Methods;
 
 use Omnipay\SpryngPayments\PaymentMethod;
+use Omnipay\SpryngPayments\Support\StandardRefund;
 
 class Paypal implements PaymentMethod
 {
+    use StandardRefund;
 
     /**
      * Get the required parameters to make a purchase with this payment method
@@ -49,5 +51,16 @@ class Paypal implements PaymentMethod
         unset($data['capture']);
 
         return $data;
+    }
+
+    /**
+     * Get the URL to refund a transaction
+     *
+     * @param $transactionReference
+     * @return mixed
+     */
+    public static function getRefundUrl($transactionReference)
+    {
+        return '/transaction/'.$transactionReference.'/paypal/paypal/refund';
     }
 }

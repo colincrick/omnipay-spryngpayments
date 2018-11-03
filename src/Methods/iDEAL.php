@@ -3,9 +3,12 @@
 namespace Omnipay\SpryngPayments\Methods;
 
 use Omnipay\SpryngPayments\PaymentMethod;
+use Omnipay\SpryngPayments\Support\StandardRefund;
 
 class iDEAL implements PaymentMethod
 {
+
+    use StandardRefund;
 
     /**
      * Get the required parameters to make a purchase with this payment method
@@ -50,5 +53,16 @@ class iDEAL implements PaymentMethod
         $data['details']['issuer'] = $parameters['issuer'];
 
         return $data;
+    }
+
+    /**
+     * Get the URL to refund a transaction
+     *
+     * @param $transactionReference
+     * @return mixed
+     */
+    public static function getRefundUrl($transactionReference)
+    {
+        return '/transaction/'.$transactionReference.'/ideal/ideal/refund';
     }
 }

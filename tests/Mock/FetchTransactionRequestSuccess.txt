@@ -1,0 +1,36 @@
+HTTP/1.1 200 Success
+Content-Type: Content-Type →application/json; charset=utf-8
+
+{
+    "processor": "ems",
+    "account": "abc123",
+    "amount": 1000,
+    "customer_ip": "127.0.0.1",
+    "dynamic_descriptor": "TEST123",
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.116 Safari/537.36",
+    "merchant_reference": "ORDER1",
+    "webhook_transaction_update": "https://example.com/webhook",
+    "amount": 10000,
+    "processor_reference": "248tgj3489gj",
+    "details": {
+        "issuer": "Money Bank",
+        "redirect_url": "https://example.com/return",
+        "sender": {
+            "country_code": "NL"
+        },
+        "approval_url": "https://sandbox.spryngpayments.com/v1/transaction/abc123/ideal/ems/authorize"
+    },
+    "payment_product": "ideal",
+    "payment_product_type": "ideal",
+    "_id": "abc123",
+    "shopper_interaction": "ecommerce",
+    "fraud_predictions": [],
+    "status": "INITIATED",
+    "last_status_update": "2018-10-31T14:59:25.992Z",
+    "geo_location": [],
+    "payment_method_fees": [],
+    "fees": [],
+    "created_at": "2018-10-31T14:59:25.992Z",
+    "blocked": false,
+    "actions": []
+}

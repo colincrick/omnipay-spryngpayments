@@ -3,9 +3,11 @@
 namespace Omnipay\SpryngPayments\Methods;
 
 use Omnipay\SpryngPayments\PaymentMethod;
+use Omnipay\SpryngPayments\Support\StandardRefund;
 
 class SOFORT implements PaymentMethod
 {
+    use StandardRefund;
 
     /**
      * Get the required parameters to make a purchase with this payment method
@@ -50,5 +52,16 @@ class SOFORT implements PaymentMethod
         $data['projectId']  = $parameters['projectId'];
 
         return $data;
+    }
+
+    /**
+     * Get the URL to refund a transaction
+     *
+     * @param $transactionReference
+     * @return mixed
+     */
+    public static function getRefundUrl($transactionReference)
+    {
+        return '/transaction/'.$transactionReference.'/sofort/sofort/refund';
     }
 }

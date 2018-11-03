@@ -3,9 +3,12 @@
 namespace Omnipay\SpryngPayments\Methods;
 
 use Omnipay\SpryngPayments\PaymentMethod;
+use Omnipay\SpryngPayments\Support\StandardRefund;
 
 class Giropay implements PaymentMethod
 {
+
+    use StandardRefund;
 
     /**
      * Get the required parameters to make a purchase with this payment method
@@ -50,5 +53,16 @@ class Giropay implements PaymentMethod
         $data['details']['bic'] = $parameters['bic'];
 
         return $data;
+    }
+
+    /**
+     * Get the URL to refund a transaction
+     *
+     * @param $transactionReference
+     * @return mixed
+     */
+    public static function getRefundUrl($transactionReference)
+    {
+        return '/transaction/'.$transactionReference.'/giropay/giropay/refund';
     }
 }

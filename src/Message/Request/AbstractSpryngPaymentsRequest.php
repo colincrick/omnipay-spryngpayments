@@ -3,6 +3,7 @@
 namespace Omnipay\SpryngPayments\Message\Request;
 
 use Omnipay\Common\Exception\InvalidRequestException;
+use Omnipay\Common\Http\ClientInterface;
 use Omnipay\Common\Message\AbstractRequest;
 use Omnipay\SpryngPayments\Methods\Bancontact;
 use Omnipay\SpryngPayments\Methods\CreditCard;
@@ -12,6 +13,7 @@ use Omnipay\SpryngPayments\Methods\Klarna;
 use Omnipay\SpryngPayments\Methods\Paypal;
 use Omnipay\SpryngPayments\Methods\SEPA;
 use Omnipay\SpryngPayments\Methods\SOFORT;
+use Symfony\Component\HttpFoundation\Request as HttpRequest;
 
 abstract class AbstractSpryngPaymentsRequest extends AbstractRequest
 {

@@ -3,9 +3,12 @@
 namespace Omnipay\SpryngPayments\Methods;
 
 use Omnipay\SpryngPayments\PaymentMethod;
+use Omnipay\SpryngPayments\Support\StandardRefund;
 
 class CreditCard implements PaymentMethod
 {
+
+    use StandardRefund;
 
     /**
      * Get the required parameters to make a purchase with this payment method
@@ -34,5 +37,30 @@ class CreditCard implements PaymentMethod
     public static function getInitiateUrl()
     {
         return '/transaction';
+    }
+
+    /**
+     * Get the URL to refund a transaction
+     *
+     * @param $transactionReference
+     * @return mixed
+     */
+    public static function getRefundUrl($transactionReference)
+    {
+        return '/transaction/'.$transactionReference.'/refund';
+    }
+
+    /**
+     * Takes the default data for a purchase request and makes method-specific changes
+     *
+     * @param $data
+     * @param $parameters
+     * @return mixed
+     */
+    public function setPurchaseData($data, $parameters)
+    {
+        $data['card'] = $parameters['card'];
+
+        return $data;
     }
 }

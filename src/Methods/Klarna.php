@@ -53,4 +53,43 @@ class Klarna implements PaymentMethod
 
         return $data;
     }
+
+    /**
+     * Get the URL to refund a transaction
+     *
+     * @param $transactionReference
+     * @return mixed
+     */
+    public static function getRefundUrl($transactionReference)
+    {
+        return '/transaction/'.$transactionReference.'/klarna/klarna/refund';
+    }
+
+    /**
+     * Get the required parameters to complete a refund with this method
+     *
+     * @return array
+     */
+    public static function requiredRefundParameters()
+    {
+        return [
+            'goodsList',
+            'reason'
+        ];
+    }
+
+    /**
+     * Takes the default data for a refund request and makes method-specific changes
+     *
+     * @param $data
+     * @param $parameters
+     * @return mixed
+     */
+    public function setRefundData($data, $parameters)
+    {
+        $data['details']['goods_list'] = $parameters['goodsList'];
+        $data['reason'] = $parameters['reason'];
+
+        return $data;
+    }
 }
