@@ -156,7 +156,8 @@ abstract class AbstractSpryngPaymentsRequest extends AbstractRequest
             $method,
             $this->baseUrl . $this->apiVersion . $endpoint,
             [
-                'X-APIKEY' => $this->getApiKey()
+                'X-APIKEY'     => $this->getApiKey(),
+                'Content-Type' => 'application/json'
             ],
             ($data === null) ? null : json_encode($data)
         );
