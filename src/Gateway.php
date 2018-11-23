@@ -21,12 +21,12 @@ class Gateway extends AbstractGateway
 
     public function getApiKey()
     {
-        return $this->getParameter('apikey');
+        return $this->getParameter('apiKey');
     }
 
     public function setApiKey($apiKey)
     {
-        return $this->setParameter('apikey', $apiKey);
+        return $this->setParameter('apiKey', $apiKey);
     }
 
     public function purchase(array $parameters = array())

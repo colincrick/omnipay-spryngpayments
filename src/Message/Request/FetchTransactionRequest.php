@@ -17,7 +17,7 @@ class FetchTransactionRequest extends AbstractSpryngPaymentsRequest
      */
     public function getData()
     {
-        $this->validate('apikey', 'transactionReference');
+        $this->validate('apiKey', 'transactionReference');
 
         $data = [];
         $data['id'] = $this->getTransactionReference();

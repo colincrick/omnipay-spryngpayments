@@ -45,7 +45,7 @@ class PurchaseRequestTest extends TestCase
         $this->assertSame($this->defaultData['dynamicDescriptor'], $data['dynamic_descriptor']);
         $this->assertSame($this->defaultData['merchantReference'], $data['merchant_reference']);
         $this->assertSame($this->defaultData['userAgent'], $data['user_agent']);
-        $this->assertSame(['issuer' => 'Money Bank', 'redirect_url' => 'https://example.com/return'], $data['details']);
+        $this->assertSame(['redirect_url' => 'https://example.com/return', 'issuer' => 'Money Bank'], $data['details']);
         $this->assertSame($this->defaultData['notifyUrl'], $data['webhook_transaction_update']);
     }
 
