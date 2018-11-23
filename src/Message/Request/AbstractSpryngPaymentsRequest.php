@@ -22,7 +22,23 @@ abstract class AbstractSpryngPaymentsRequest extends AbstractRequest
 
     protected $apiVersion = 'v1';
 
-    protected $baseUrl = 'https://api.spryngpayments.com/';
+    /**
+     * Live API base url.
+     *
+     * This base url will be used when the test mode is disabled.
+     *
+     * @var string
+     */
+    protected $liveBaseUrl = 'https://api.spryngpayments.com/';
+
+    /**
+     * Test API base url.
+     *
+     * This base url will be used when the test mode is enabled.
+     *
+     * @var string
+     */
+    protected $testBaseUrl = 'https://sandbox.spryngpayments.com/';
 
     public function getApiKey()
     {
@@ -150,11 +166,21 @@ abstract class AbstractSpryngPaymentsRequest extends AbstractRequest
         ];
     }
 
+    /**
+     * Get the API base url.
+     *
+     * @return string
+     */
+    public function getBaseUrl()
+    {
+        return $this->getTestMode() ? $this->testBaseUrl : $this->liveBaseUrl;
+    }
+
     protected function sendRequest($method, $endpoint, array $data = null)
     {
         $response = $this->httpClient->request(
             $method,
-            $this->baseUrl . $this->apiVersion . $endpoint,
+            $this->getBaseUrl() . $this->apiVersion . $endpoint,
             [
                 'X-APIKEY' => $this->getApiKey()
             ],
