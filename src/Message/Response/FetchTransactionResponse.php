@@ -57,4 +57,12 @@ class FetchTransactionResponse extends AbstractSpryngPaymentsResponse implements
 
         return null;
     }
+
+    /**
+     * @return null
+     */
+    public function getMerchantReference()
+    {
+        return $this->data['merchant_reference'] ?? null;
+    }
 }
