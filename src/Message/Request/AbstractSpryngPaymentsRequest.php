@@ -47,7 +47,7 @@ abstract class AbstractSpryngPaymentsRequest extends AbstractRequest
 
     public function setApiKey($apiKey)
     {
-        $this->setParameter('apiKey', $apiKey);
+        return $this->setParameter('apiKey', $apiKey);
     }
 
     public function getAccount()
@@ -57,7 +57,17 @@ abstract class AbstractSpryngPaymentsRequest extends AbstractRequest
 
     public function setAccount($account)
     {
-        $this->setParameter('account', $account);
+        return $this->setParameter('account', $account);
+    }
+
+    public function getOrganisation()
+    {
+        return $this->getParameter('organisation');
+    }
+
+    public function setOrganisation($organisation)
+    {
+        return $this->setParameter('organisation', $organisation);
     }
 
     public function getAmount()
@@ -67,7 +77,7 @@ abstract class AbstractSpryngPaymentsRequest extends AbstractRequest
 
     public function setAmount($amount)
     {
-        $this->setParameter('amount', $amount);
+        return $this->setParameter('amount', $amount);
     }
 
     public function getCapture()
@@ -78,6 +88,11 @@ abstract class AbstractSpryngPaymentsRequest extends AbstractRequest
     public function setCapture($capture)
     {
         return $this->setParameter('capture', $capture);
+    }
+
+    public function setCustomerReference($customerRef)
+    {
+        return $this->setParameter('customerReference', $customerRef);
     }
 
     public function getCustomerIp()
@@ -97,7 +112,7 @@ abstract class AbstractSpryngPaymentsRequest extends AbstractRequest
 
     public function setDynamicDescriptor($dd)
     {
-        $this->setParameter('dynamicDescriptor', $dd);
+        return $this->setParameter('dynamicDescriptor', $dd);
     }
 
     public function getGoodsList()
@@ -110,7 +125,7 @@ abstract class AbstractSpryngPaymentsRequest extends AbstractRequest
      */
     public function setGoodsList($goodsList)
     {
-        $this->setParameter('goodsList', $goodsList);
+       return $this->setParameter('goodsList', $goodsList);
     }
 
     public function getProjectId()
@@ -120,7 +135,7 @@ abstract class AbstractSpryngPaymentsRequest extends AbstractRequest
 
     public function setProjectId($projectId)
     {
-        $this->setParameter('projectId', $projectId);
+        return $this->setParameter('projectId', $projectId);
     }
 
     public function getBic()
@@ -140,7 +155,7 @@ abstract class AbstractSpryngPaymentsRequest extends AbstractRequest
 
     public function setMerchantReference($mr)
     {
-        $this->setParameter('merchantReference', $mr);
+        return $this->setParameter('merchantReference', $mr);
     }
 
     public function getUserAgent()
@@ -150,7 +165,7 @@ abstract class AbstractSpryngPaymentsRequest extends AbstractRequest
 
     public function setUserAgent($ua)
     {
-        $this->setParameter('userAgent', $ua);
+        return $this->setParameter('userAgent', $ua);
     }
 
     public function getBaseTransactionData()

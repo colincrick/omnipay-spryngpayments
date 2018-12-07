@@ -5,7 +5,7 @@ namespace Omnipay\SpryngPayments\Message\Request;
 use Omnipay\Common\Message\ResponseInterface;
 use Omnipay\SpryngPayments\Message\Response\FetchCustomerResponse;
 
-class CreateCustomerRequest extends AbstractSpryngPaymentsRequest
+class UpdateCustomerRequest extends AbstractSpryngPaymentsRequest
 {
     /**
      * Get the raw data array for this message. The format of this varies from gateway to
@@ -18,10 +18,9 @@ class CreateCustomerRequest extends AbstractSpryngPaymentsRequest
     {
         $this->validate(
             'apiKey',
-            'organisation',
+            'customerReference',
             'firstName',
             'lastName',
-            'email_address',
             'streetAddress',
             'postalCode',
             'city',
@@ -31,7 +30,6 @@ class CreateCustomerRequest extends AbstractSpryngPaymentsRequest
         $data = [
             'first_name'    => $this->getParameter('firstName'),
             'last_name'     => $this->getParameter('lastName'),
-            'email_address' => $this->getParameter('emailAddress'),
             'streetAddress' => $this->getParameter('street_address'),
             'postalCode'    => $this->getParameter('postal_code'),
             'city'          => $this->getParameter('city'),
@@ -84,6 +82,11 @@ class CreateCustomerRequest extends AbstractSpryngPaymentsRequest
         return $this->setParameter('countryCode', $value);
     }
 
+    public function setCustomerReference($value)
+    {
+        return $this->setParameter('customerReference', $value);
+    }
+
     /**
      * Send the request with specified data
      *
@@ -94,7 +97,7 @@ class CreateCustomerRequest extends AbstractSpryngPaymentsRequest
     {
         $response = $this->sendRequest(
             self::POST,
-            '/customer',
+            '/customer/'.$this->getParameter('customerReference'),
             $data
         );
 
