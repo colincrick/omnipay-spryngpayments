@@ -3,8 +3,12 @@
 namespace Omnipay\SpryngPayments;
 
 use Omnipay\Common\AbstractGateway;
+use Omnipay\SpryngPayments\Message\Request\CreateCheckoutRequest;
+use Omnipay\SpryngPayments\Message\Request\CreateCustomerRequest;
 use Omnipay\SpryngPayments\Message\Request\FetchTransactionRequest;
+use Omnipay\SpryngPayments\Message\Request\ListCustomerRequest;
 use Omnipay\SpryngPayments\Message\Request\PurchaseRequest;
+use Omnipay\SpryngPayments\Message\Request\UpdateCustomerRequest;
 
 class Gateway extends AbstractGateway
 {
@@ -16,9 +20,10 @@ class Gateway extends AbstractGateway
     public function getDefaultParameters()
     {
         return array(
-            'apiKey'   => '',
-            'account'  => '',
-            'testMode' => false
+            'apiKey'       => '',
+            'organisation' => '',
+            'account'      => '',
+            'testMode'     => false,
         );
     }
 
@@ -37,6 +42,16 @@ class Gateway extends AbstractGateway
         return $this->setParameter('account', $account);
     }
 
+    public function setOrganisation($organisation)
+    {
+        return $this->setParameter('organisation', $organisation);
+    }
+
+    public function getOrganisation()
+    {
+        return $this->getParameter('organisation');
+    }
+
     public function purchase(array $parameters = array())
     {
         return $this->createRequest(PurchaseRequest::class, $parameters);
@@ -50,6 +65,44 @@ class Gateway extends AbstractGateway
     public function fetchTransaction(array $parameters = array())
     {
         return $this->createRequest(FetchTransactionRequest::class, $parameters);
+    }
+
+    /**
+     * Create a customer
+     * @param array $parameters
+     * @return \Omnipay\Common\Message\AbstractRequest
+     */
+    public function createCustomer(array $parameters = array())
+    {
+        return $this->createRequest(CreateCustomerRequest::class, $parameters);
+    }
+
+    /**
+     * Update a customer
+     * @param array $parameters
+     * @return \Omnipay\Common\Message\AbstractRequest
+     */
+    public function updateCustomer(array $parameters = array())
+    {
+        return $this->createRequest(UpdateCustomerRequest::class, $parameters);
+    }
+
+    /**
+     * @param array $parameters
+     * @return \Omnipay\Common\Message\AbstractRequest
+     */
+    public function listCustomer(array $parameters = array())
+    {
+        return $this->createRequest(ListCustomerRequest::class, $parameters);
+    }
+
+    /**
+     * @param array $parameters
+     * @return \Omnipay\Common\Message\AbstractRequest
+     */
+    public function createCheckout(array $parameters = array())
+    {
+        return $this->createRequest(CreateCheckoutRequest::class, $parameters);
     }
 
     public function completePurchase(array $options = array())

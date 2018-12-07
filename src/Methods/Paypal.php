@@ -47,7 +47,8 @@ class Paypal implements PaymentMethod
      */
     public function setPurchaseData($data, $parameters)
     {
-        $data['details']['capture_now'] = $data['capture'];
+        $data['details']['capture_now'] = $parameters['capture'];
+        $data['details']['redirect_url'] = $parameters['returnUrl'];
         unset($data['capture']);
 
         return $data;
