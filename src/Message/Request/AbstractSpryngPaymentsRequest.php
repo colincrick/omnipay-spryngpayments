@@ -80,6 +80,26 @@ abstract class AbstractSpryngPaymentsRequest extends AbstractRequest
         return $this->setParameter('amount', $amount);
     }
 
+    public function getCustomer()
+    {
+        return $this->getParameter('customer');
+    }
+
+    public function setCustomer($customer)
+    {
+        return $this->setParameter('customer', $customer);
+    }
+
+    public function getCard()
+    {
+        return $this->getParameter('card');
+    }
+
+    public function setCard($card)
+    {
+        return $this->setParameter('card', $card);
+    }
+
     public function getCapture()
     {
         return $this->getParameter('capture');
