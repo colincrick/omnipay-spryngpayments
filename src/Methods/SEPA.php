@@ -21,7 +21,7 @@ class SEPA implements PaymentMethod
             'account',
             'amount',
             'capture',
-            'customer',
+            'customerReference',
             'customerIp',
             'dynamicDescriptor',
             'merchantReference',
@@ -50,7 +50,7 @@ class SEPA implements PaymentMethod
     public function setPurchaseData($data, $parameters)
     {
         $data['details']['redirect_url'] = $parameters['returnUrl'];
-        $data['customer'] = $parameters['customer'];
+        $data['customer'] = $parameters['customerReference'];
 
         return $data;
     }

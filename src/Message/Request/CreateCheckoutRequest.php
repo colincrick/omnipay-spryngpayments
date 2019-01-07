@@ -19,6 +19,7 @@ class CreateCheckoutRequest extends AbstractSpryngPaymentsRequest
     public function getData()
     {
         $this->validate(
+            'paymentMethod',
             'amount',
             'customerReference',
             'merchantReference',
@@ -34,16 +35,28 @@ class CreateCheckoutRequest extends AbstractSpryngPaymentsRequest
             'merchant_reference' => $this->getParameter('merchantReference'),
             'template_url'       => $this->getParameter('templateUrl'),
             'return_url'         => $this->getParameter('returnUrl'),
-            'configurations'     => [
-                'card' => [
+        ];
+
+        switch ($this->getParameter('paymentMethod')) {
+            case 'card':
+                $data['configurations']['card'] = [
                     'capture_now'        => $this->getParameter('capture'),
                     'dynamic_descriptor' => $this->getParameter('dynamicDescriptor'),
                     'threed_secure'      => [
                         'enabled' => false,
-                    ],
-                ],
-            ]
-        ];
+                    ]
+                ];
+                break;
+            case 'bancontact':
+                $data['configurations']['bancontact'] = [
+                    'dynamic_descriptor' => $this->getParameter('dynamicDescriptor'),
+                ];
+            break;
+        }
+
+        if (!is_null($webhook = $this->getNotifyUrl())) {
+            $data['webhook_transaction_update'] = $webhook;
+        }
 
         return $data;
     }

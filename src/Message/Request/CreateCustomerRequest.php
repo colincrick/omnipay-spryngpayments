@@ -21,7 +21,7 @@ class CreateCustomerRequest extends AbstractSpryngPaymentsRequest
             'organisation',
             'firstName',
             'lastName',
-            'email_address',
+            'emailAddress',
             'streetAddress',
             'postalCode',
             'city',
@@ -29,13 +29,13 @@ class CreateCustomerRequest extends AbstractSpryngPaymentsRequest
         );
 
         $data = [
-            'first_name'    => $this->getParameter('firstName'),
-            'last_name'     => $this->getParameter('lastName'),
-            'email_address' => $this->getParameter('emailAddress'),
-            'streetAddress' => $this->getParameter('street_address'),
-            'postalCode'    => $this->getParameter('postal_code'),
-            'city'          => $this->getParameter('city'),
-            'countryCode'   => $this->getParameter('country_code'),
+            'first_name'     => $this->getParameter('firstName'),
+            'last_name'      => $this->getParameter('lastName'),
+            'email_address'  => $this->getParameter('emailAddress'),
+            'street_address' => $this->getParameter('streetAddress'),
+            'postal_code'    => $this->getParameter('postalCode'),
+            'city'           => $this->getParameter('city'),
+            'country_code'   => $this->getParameter('countryCode'),
         ];
         $data = $this->setIfExists('companyName', 'company_name', $data);
         $data = $this->setIfExists('companyRegistrationNumber', 'company_registration_number', $data);
