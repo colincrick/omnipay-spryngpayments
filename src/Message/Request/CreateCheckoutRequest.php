@@ -37,6 +37,8 @@ class CreateCheckoutRequest extends AbstractSpryngPaymentsRequest
             'return_url'         => $this->getParameter('returnUrl'),
         ];
 
+        $data = $this->setIfExists('cssFramework', 'css_framework', $data);
+
         switch ($this->getParameter('paymentMethod')) {
             case 'card':
                 $data['configurations']['card'] = [

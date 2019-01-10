@@ -188,6 +188,11 @@ abstract class AbstractSpryngPaymentsRequest extends AbstractRequest
         return $this->setParameter('userAgent', $ua);
     }
 
+    public function setCssFrameWork($framework)
+    {
+        return $this->setParameter('cssFramework', $framework);
+    }
+
     public function getBaseTransactionData()
     {
         return [
@@ -261,5 +266,14 @@ abstract class AbstractSpryngPaymentsRequest extends AbstractRequest
             default:
                 throw new InvalidRequestException($this->getParameter('payment_product'.' is not supported.'));
         }
+    }
+
+    public function setIfExists($parameterKey, $requestKey, $data)
+    {
+        if (!is_null($value = $this->getParameter($parameterKey))) {
+            $data[$requestKey] = $value;
+        }
+
+        return $data;
     }
 }
