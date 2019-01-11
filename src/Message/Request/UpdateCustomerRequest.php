@@ -103,13 +103,4 @@ class UpdateCustomerRequest extends AbstractSpryngPaymentsRequest
 
         return $this->response = new FetchCustomerResponse($this, $response);
     }
-
-    private function setIfExists($parameterKey, $requestKey, $data)
-    {
-        if (!is_null($value = $this->getParameter($parameterKey))) {
-            $data[$requestKey] = $value;
-        }
-
-        return $data;
-    }
 }
